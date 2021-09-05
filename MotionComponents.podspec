@@ -7,36 +7,66 @@
 #
 
 Pod::Spec.new do |s|
+  # 框架的名称
   s.name             = 'MotionComponents'
+  # 框架的版本号
   s.version          = '0.1.0'
-  s.summary          = 'A short description of MotionComponents.'
+  # 框架的简单介绍
+  s.summary          = '天天数链SwiftUI组件'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
+  # 框架的详细描述(详细介绍，要比简介长)
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+                      天天数连组件：
+                      分类扩展
                        DESC
+  # 框架的主页
+  s.homepage         = 'https://github.com/LZRight123/MotionComponents'
 
-  s.homepage         = 'https://github.com/快乐的小梁同学/MotionComponents'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  # 证书类型
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '快乐的小梁同学' => '350442340@qq.com' }
-  s.source           = { :git => 'https://github.com/快乐的小梁同学/MotionComponents.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = {
+    :git => 'https://github.com/LZRight123/MotionComponents.git',
+    :tag => s.version.to_s,
+    :submodules => true
+  }
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '13.0'
 
-  s.source_files = 'MotionComponents/Classes/**/*'
+  s.swift_version = '5.3'
+  s.frameworks = 'Foundation'
+  # 框架要求ARC环境下使用
+  s.requires_arc = true
   
-  # s.resource_bundles = {
-  #   'MotionComponents' => ['MotionComponents/Assets/*.png']
-  # }
+  # 每次都参与编译方便修改时
+  s.static_framework = true
+  
+  # 设置 podspec 的默认 subspec
+  s.default_subspecs = 'Extensions', 'Networking'
+  
+  # 二级目录（根目录是s，使用s.subspec设置子目录，这里设置子目录为ss）
+  s.subspec 'Extensions' do |ss|
+    ss.source_files = 'MotionComponents/Extensions/**/*.swift'
+    # 框架包含的资源包
+    # ss.resources  = 'MotionComponents/MotionComponents/MotionComponents.bundle'
+    ss.dependency "SwifterSwift/SwiftStdlib"
+    ss.dependency "SwifterSwift/Foundation"
+    ss.dependency "SwifterSwift/Dispatch"
+  end
+  
+  
+  # 网络请求 数据解析
+  s.subspec 'Networking' do |ss|
+    ss.source_files = 'MotionComponents/Networking/**/*.swift'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    ss.dependency "Moya"
+    ss.dependency "KakaJSON"
+    ss.dependency "SwiftyJSON"
+  end
+  
+  s.subspec 'Tools' do |ss|
+    ss.source_files = 'MotionComponents/Tools/**/*.swift'
+
+  end
+  
 end
