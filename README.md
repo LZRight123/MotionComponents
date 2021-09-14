@@ -17,7 +17,8 @@ MotionComponents is available through [CocoaPods](https://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'MotionComponents'
+pod 'MotionComponents', :path => '../'
+pod 'MotionComponents/Tools', :path => '../'
 ```
 
 ## Author

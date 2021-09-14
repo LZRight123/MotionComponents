@@ -7,7 +7,8 @@
 //
 
 import Foundation
-@_exported import Moya
+import Combine
+import Moya
 @_exported import Alamofire
 @_exported import KakaJSON
 @_exported import SwiftyJSON
@@ -27,13 +28,13 @@ open class CGI<Target: TargetType>: MoyaProvider<Target> {
     open override func request(_ target: Target,
                    callbackQueue: DispatchQueue? = .none,
                    progress: ProgressBlock? = .none,
-                   completion: @escaping Completion) -> Cancellable {
+                   completion: @escaping Completion) -> Moya.Cancellable {
         super.request(target, callbackQueue: callbackQueue, progress: progress, completion: completion)
     }
     
     /// 暂不公开
     @discardableResult
-    func request<T>(_ target: Target, dataType: T.Type, completion: @escaping (MoyaResult, NetResponse<T>) -> Void ) -> Cancellable {
+    func request<T>(_ target: Target, dataType: T.Type, completion: @escaping (MoyaResult, NetResponse<T>) -> Void ) -> Moya.Cancellable {
         return request(target) { (r) in
             if r.error != nil {
                 completion(r, .init(code: .requestError, message: "网络请求失败", data: nil))
@@ -52,9 +53,21 @@ public struct Networking {
     public static var defaultProvider = CGI<MultiTarget>()
 }
 
+
+//MARK: - Combine普通请求
+public extension Networking {
+    @discardableResult 
+    static func requestPublisher(_ target: TargetType) -> AnyPublisher<Response, MoyaError> {
+        return defaultProvider.requestPublisher(.init(target))
+    }
+    
+    
+}
+
+//MARK: - 普通请求
 public extension Networking {
     @discardableResult
-    static func request(_ target: TargetType, completion: @escaping Completion) -> Cancellable {
+    static func request(_ target: TargetType, completion: @escaping Completion) -> Moya.Cancellable {
         return defaultProvider.request(.init(target), completion: completion)
     }
     // 暂不公开
@@ -64,14 +77,17 @@ public extension Networking {
     //    }
     
     @discardableResult
-    static func requestObject<T: Convertible>(_ target: TargetType, modeType: T.Type, atKeyPath keyPath: String? = "data", completion: @escaping (MoyaResult, T?) -> Void ) -> Cancellable {
+    static func requestObject<T: Convertible>(_ target: TargetType, modeType: T.Type, atKeyPath keyPath: String? = "data", completion: @escaping (MoyaResult, T?) -> Void ) -> Moya.Cancellable {
         return defaultProvider.requestObject(.init(target), modeType: modeType, completion: completion)
     }
     
     @discardableResult
-    static func requestArray<T: Convertible>(_ target: TargetType, modeType: T.Type, atKeyPath keyPath: String?  = "data", completion: @escaping (MoyaResult, [T]?) -> Void ) -> Cancellable {
+    static func requestArray<T: Convertible>(_ target: TargetType, modeType: T.Type, atKeyPath keyPath: String?  = "data", completion: @escaping (MoyaResult, [T]?) -> Void ) -> Moya.Cancellable {
         return defaultProvider.requestArray(.init(target), modeType: modeType, completion: completion)
     }
+    
 }
+
+
 
 

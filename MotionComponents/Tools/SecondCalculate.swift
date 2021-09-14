@@ -44,18 +44,18 @@ public struct SecondCalculate {
         return Int(second) % 60
     }
     
-    public var formatterText: String {
-        let hour = self.hour.formatCustom("00")
-        let minute = self.minute.formatCustom("00")
-        let sec = self.sec.formatCustom("00")
-        
-        switch formatter {
-        case "hh:mm:ss":
-            return "\(hour):\(minute):\(sec)"
-        case "--:mm:ss":
-            return self.hour > 0 ? "\(hour):\(minute):\(sec)" : "\(minute):\(sec)"
-        default:
-            return "\(hour):\(minute):\(sec)"
-        }
-    }
+//    public var formatterText: String {
+//        let hour = self.hour.formatCustom("00")
+//        let minute = self.minute.formatCustom("00")
+//        let sec = self.sec.formatCustom("00")
+//        
+//        switch formatter {
+//        case "hh:mm:ss":
+//            return "\(hour):\(minute):\(sec)"
+//        case "--:mm:ss":
+//            return self.hour > 0 ? "\(hour):\(minute):\(sec)" : "\(minute):\(sec)"
+//        default:
+//            return "\(hour):\(minute):\(sec)"
+//        }
+//    }
 }

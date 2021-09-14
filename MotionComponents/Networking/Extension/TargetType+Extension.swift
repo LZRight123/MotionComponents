@@ -9,18 +9,17 @@
 import Foundation
 import Moya
 
-typealias HttpMethod = Moya.Method
 
-protocol CustomTargetType: TargetType {
+public protocol CustomTargetType: TargetType {
     var parameters: [String: Any]? { get }
     var parameterEncoding: ParameterEncoding { get }
 }
 
-extension CustomTargetType {
-    var baseURL: URL { URL(string: "https://baidu.com")! }
+public extension CustomTargetType {
+    var baseURL: URL { URL(string: "https://fm.douban.com/")! }
 
-    var method: HttpMethod {
-        return .post
+    var method: Moya.Method {
+        return .get
     }
 
     var sampleData: Data {
@@ -45,7 +44,6 @@ extension CustomTargetType {
     
     var parameterEncoding: ParameterEncoding { URLEncoding.default }
 
-    
     var headers: [String: String]? {
 //        var headers = [
 //            "lz_header": "lz_header_value",

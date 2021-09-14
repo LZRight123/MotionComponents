@@ -31,10 +31,10 @@ Pod::Spec.new do |s|
     :submodules => true
   }
 
-  s.ios.deployment_target = '13.0'
+  s.ios.deployment_target = '14.0'
 
   s.swift_version = '5.3'
-  s.frameworks = 'Foundation'
+  # s.frameworks = 'Combine', 'SwiftUI'
   # 框架要求ARC环境下使用
   s.requires_arc = true
   
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   s.static_framework = true
   
   # 设置 podspec 的默认 subspec
-  s.default_subspecs = 'Extensions', 'Networking'
+  s.default_subspecs = 'Extensions', 'Networking', 'Tools'
   
   # 二级目录（根目录是s，使用s.subspec设置子目录，这里设置子目录为ss）
   s.subspec 'Extensions' do |ss|
@@ -59,14 +59,16 @@ Pod::Spec.new do |s|
   s.subspec 'Networking' do |ss|
     ss.source_files = 'MotionComponents/Networking/**/*.swift'
 
-    ss.dependency "Moya"
+#    ss.dependency "Moya"
+    ss.dependency "Moya/Combine", '~> 15.0'
     ss.dependency "KakaJSON"
     ss.dependency "SwiftyJSON"
   end
   
   s.subspec 'Tools' do |ss|
     ss.source_files = 'MotionComponents/Tools/**/*.swift'
-
+    
+    ss.dependency "MotionComponents/Extensions"
   end
   
 end

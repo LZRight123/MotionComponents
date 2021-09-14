@@ -46,12 +46,7 @@ struct NetResponse<Element>: Convertible {
 //Result<Moya.Response, MoyaError>
 public extension Result where Success == Moya.Response {
     var rawReponse: Moya.Response? { //原始的 Response
-        switch self {
-        case let .success(value):
-            return value
-        case .failure:
-            return nil
-        }
+        return try? get()
     }
     
     var json: JSON? { // 原始Response 转data

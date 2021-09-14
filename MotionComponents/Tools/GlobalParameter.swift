@@ -7,14 +7,16 @@
 //
 
 import UIKit
+/*
+ Todo: 34 - 40 安全区域
+ */
 
-
-public let ScreenWidth  = UIScreen.main.bounds.width
-public let ScreenHeight = UIScreen.main.bounds.height
-
+public func ScreenWidth() -> CGFloat { UIScreen.main.bounds.width }
+public func ScreenHeight() -> CGFloat { UIScreen.main.bounds.height }
+public func ScreenSize() -> CGSize { UIScreen.main.bounds.size }
 public let NavBarH: CGFloat = 44
 public let TabbarHeight: CGFloat = 49
-public let ScaleW = ScreenWidth/375.0
+public func ScaleW() -> CGFloat { ScreenWidth()/375.0 }
 /// 分页请求入参
 public let pageStart = 0
 public let limitSize = 20
