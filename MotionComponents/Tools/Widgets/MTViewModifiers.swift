@@ -70,3 +70,20 @@ public struct MTAttachTextModifier: ViewModifier {
     }
     
 }
+
+
+//MARK: - 按钮点击变小效果
+//public struct MTScalePressedButtonStyle: ButtonStyle {
+//    let scale: CGFloat
+//    public init(scale: CGFloat = 0.8) {
+//        self.scale = scale
+//    }
+//    
+//    public func makeBody(configuration: Configuration) -> some View {
+//        let isPressed = configuration.isPressed
+//        
+//        configuration.label
+//            .scaleEffect(isPressed ? scale : 1)
+//            .animation(.spring())
+//    }
+//}

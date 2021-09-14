@@ -16,8 +16,8 @@ public extension View {
             .disabled(!style.isEnable)
     }
 
-    func mtAnimation(isOverlay: Bool = true) -> some View {
-        self.buttonStyle(MTButtonAnimationStyle(isOverlay: isOverlay))
+    func mtAnimation(isOverlay: Bool = true, scale: CGFloat = 0.97) -> some View {
+        self.buttonStyle(MTButtonAnimationStyle(isOverlay: isOverlay, scale: scale))
     }
     
   
@@ -85,10 +85,10 @@ public struct MTButtonStyleModifier: ViewModifier {
 //MARK: - 自定义Style
 public struct MTButtonAnimationStyle: ButtonStyle  {
     let isOverlay: Bool
+    let scale: CGFloat
     
     public func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed
-        let scale: CGFloat = 0.97
         
         if isOverlay {
             configuration.label
@@ -126,9 +126,7 @@ public struct MTButtonStyle: ButtonStyle  {
             
             
             .overlay(makeOverlay(isPressed: isPressed))
-            .scaleEffect(isPressed ? scale : 1)
-            
-            .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1))
+            .scaleEffect(isPressed ? scale : 1)            
     }
 
 }
