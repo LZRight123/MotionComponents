@@ -28,7 +28,7 @@ public func SafeBottomArea() -> CGFloat  {
 
 public let NavBarH: CGFloat = 44
 public let ISIphoneX  = (StatusBarH() >= 44)
-public let TabbarHeight: CGFloat = 49
+public let TabbarHeight: CGFloat = 50
 
 /// 分页请求入参
 public let pageStart = 0

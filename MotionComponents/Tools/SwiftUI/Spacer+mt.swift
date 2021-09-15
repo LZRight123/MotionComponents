@@ -21,6 +21,8 @@ public extension MT where Base == Spacer {
     static func mid() -> some View  { MTSpaceing.mid.value }
     /// 大间隙 32
     static func max() -> some View  { MTSpaceing.max.value }
+    /// tabbar
+    static func tabbar() -> some View { Color.clear.frame(height: TabbarHeight) }
 
 }
 
@@ -46,3 +48,13 @@ public enum MTSpaceing: CGFloat, CaseIterable, Identifiable {
     }
 }
 
+
+
+public extension View {
+    func mtAttatchTabbarSpacer() -> some View {
+        VStack {
+            self
+            Spacer.mt.tabbar()
+        }
+    }
+}
