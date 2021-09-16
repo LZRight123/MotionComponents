@@ -166,9 +166,9 @@ extension MTButtonStyle.Style: Identifiable {
 
     public var textFont: Font {
         switch self {
-        case .smallDefult, .smallStorker: return .mt.body3.weight(.bold)
-        case .mainDefult, .mainStorKer: return .mt.body1.weight(.bold)
-        case .cricleDefult, .cricleMini: return .mt.body3.weight(.bold)
+        case .smallDefult, .smallStorker: return .mt.body3.mtBlod()
+        case .mainDefult, .mainStorKer: return .mt.body1.mtBlod()
+        case .cricleDefult, .cricleMini: return .mt.body3.mtBlod()
         }
     }
     

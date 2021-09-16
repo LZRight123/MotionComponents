@@ -17,6 +17,8 @@ public struct AppearConfig {
         UINavigationBar.appearance().shadowImage = .init()
         
         UITableViewCell.appearance().selectionStyle = .blue
+        
+        UITableView.appearance().backgroundColor = UIColor(.mt.gray_050)
     }
 }
 
