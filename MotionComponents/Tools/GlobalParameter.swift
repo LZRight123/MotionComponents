@@ -25,6 +25,7 @@ public func SafeBottomArea() -> CGFloat  {
     UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
 }
 
+public func MTSCALE() -> CGFloat { ScreenWidth() / 375 }
 
 public let NavBarH: CGFloat = 44
 public let ISIphoneX  = (StatusBarH() >= 44)

@@ -33,7 +33,7 @@ public extension MT where Base == Image {
     static func load(_ source: MTMapIcon) -> Image { source.value }
     static func load(_ source: MTNavigationIcon) -> Image { source.value }
     static func load(_ source: MTSocialIcon) -> Image { source.value }
-    static func load(_ source: MTToggleIcon) -> Image { source.value }
+//    static func load(_ source: MTToggleIcon) -> Image { source.value }
 }
 
 
@@ -107,11 +107,11 @@ public enum MTSocialIcon: String, CaseIterable, MTImageSource {
 
 
 
-public enum MTToggleIcon: String, CaseIterable, MTImageSource {
-    case Map_default, Map_place
-    
-    public var named: String { rawValue }
-}
+//public enum MTToggleIcon: String, CaseIterable, MTImageSource {
+//    case Map_default, Map_place
+//
+//    public var named: String { rawValue }
+//}
 
 
 
